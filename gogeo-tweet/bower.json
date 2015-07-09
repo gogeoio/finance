@@ -37,6 +37,7 @@
     "d3": "~3.5.5",
     "angular-nvd3": "~0.1.1",
     "angucomplete-alt": "~1.0.0",
-    "venturocket-angular-slider": "~0.3.2"
+    "venturocket-angular-slider": "~0.3.2",
+    "angular-capitalize-filter": "~2.1.0"
   }
 }
