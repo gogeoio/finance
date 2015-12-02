@@ -246,12 +246,19 @@ module gogeo {
                 ]
             };
 
-            var options = {
-                mapOptions: mapOptions,
-                maptiks_id: "night-map"
+            // var options = {
+            //     mapOptions: mapOptions
+            // };
+            //
+            // return new L.Google("ROADMAP", options);
+
+            let url = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
+            let options = {
+              attributionControl: false,
+              doubleClickZoom: false
             };
 
-            return new L.Google("ROADMAP", options);
+            return L.tileLayer(url, options)
         }
 
         private getDayMap() {
@@ -347,8 +354,7 @@ module gogeo {
         private createLayers(): Array<L.ILayer> {
             var url = this.configureUrl();
             var options = {
-                subdomains: Configuration.subdomains,
-                maptiks_id: this.mapSelected
+                subdomains: Configuration.subdomains
             };
 
             if (["point", "intensity"].indexOf(this.mapSelected) != (-1)) {
@@ -609,7 +615,6 @@ module gogeo {
                 return;
             } else {
                 var reducedName = Configuration.getReducedTypeEstabName();
-                console.log("----------", this.tweetResult);
                 var typeEstab = this.tweetResult["typeestab"];
                 this.tweetResult["typeestab"] = reducedName[typeEstab]
             }
@@ -682,8 +687,7 @@ module gogeo {
                         minZoom: 4,
                         maxZoom: 18,
                         center: new L.LatLng(-15, -56), // San Francisco, CA
-                        zoom: 5,
-                        maptiks_id: "leaflet-map"
+                        zoom: 5
                     };
 
                     var mapContainerElement = element.find(".dashboard-map-container")[0];

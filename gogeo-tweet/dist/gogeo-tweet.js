@@ -1775,11 +1775,17 @@ var gogeo;
                     }
                 ]
             };
+            // var options = {
+            //     mapOptions: mapOptions
+            // };
+            //
+            // return new L.Google("ROADMAP", options);
+            var url = "http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png";
             var options = {
-                mapOptions: mapOptions,
-                maptiks_id: "night-map"
+                attributionControl: false,
+                doubleClickZoom: false
             };
-            return new L.Google("ROADMAP", options);
+            return L.tileLayer(url, options);
         };
         DashboardMapController.prototype.getDayMap = function () {
             var url = "http://{s}.api.internal.tomtom.com/lbs/map/3/basic/1/{z}/{x}/{y}.png?key=8r734zursdrdrvcejfhedk8q&l=en&v=3";
@@ -1861,8 +1867,7 @@ var gogeo;
         DashboardMapController.prototype.createLayers = function () {
             var url = this.configureUrl();
             var options = {
-                subdomains: gogeo.Configuration.subdomains,
-                maptiks_id: this.mapSelected
+                subdomains: gogeo.Configuration.subdomains
             };
             if (["point", "intensity"].indexOf(this.mapSelected) != (-1)) {
                 return [L.tileLayer(url, options)];
@@ -2076,7 +2081,6 @@ var gogeo;
             }
             else {
                 var reducedName = gogeo.Configuration.getReducedTypeEstabName();
-                console.log("----------", this.tweetResult);
                 var typeEstab = this.tweetResult["typeestab"];
                 this.tweetResult["typeestab"] = reducedName[typeEstab];
             }
@@ -2150,8 +2154,7 @@ var gogeo;
                         minZoom: 4,
                         maxZoom: 18,
                         center: new L.LatLng(-15, -56),
-                        zoom: 5,
-                        maptiks_id: "leaflet-map"
+                        zoom: 5
                     };
                     var mapContainerElement = element.find(".dashboard-map-container")[0];
                     var map = L.map("map-container", options);
