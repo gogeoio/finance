@@ -4,8 +4,6 @@
 ///<reference path="./_references.d.ts"/>
 var gogeo;
 (function (gogeo) {
-    gogeo.settings;
-    gogeo.placesToSearch;
     var Configuration = (function () {
         function Configuration() {
         }
@@ -878,33 +876,6 @@ var gogeo;
             this._lastMapBase = null;
             this._lastTypeEstab = null;
             this._loading = true;
-            this.worldBound = {
-                type: "Polygon",
-                coordinates: [
-                    [
-                        [
-                            -201.09375,
-                            -81.97243132048264
-                        ],
-                        [
-                            -201.09375,
-                            84.86578186731522
-                        ],
-                        [
-                            201.09375,
-                            84.86578186731522
-                        ],
-                        [
-                            201.09375,
-                            -81.97243132048264
-                        ],
-                        [
-                            -201.09375,
-                            -81.97243132048264
-                        ]
-                    ]
-                ]
-            };
             this._geomSpaceObservable = new Rx.BehaviorSubject(null);
             this._hashtagFilterObservable = new Rx.BehaviorSubject(null);
             this._somethingTermsObservable = new Rx.BehaviorSubject([]);
@@ -1477,11 +1448,10 @@ var gogeo;
 /// <reference path="../../shared/abstract-controller.ts" />
 /// <reference path="../services/dashboard-events.ts" />
 /// <reference path="../services/dashboard-service.ts" />
-var __extends = this.__extends || function (d, b) {
+var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var gogeo;
 (function (gogeo) {
@@ -1790,7 +1760,7 @@ var gogeo;
         };
         DashboardMapController.prototype.getNightMap = function () {
             var mapOptions = {
-                // How you would like to style the map. 
+                // How you would like to style the map.
                 // This is where you would paste any style found on Snazzy Maps.
                 styles: [
                     { "stylers": [{ "visibility": "simplified" }] },
@@ -1812,7 +1782,13 @@ var gogeo;
             return new L.Google("ROADMAP", options);
         };
         DashboardMapController.prototype.getDayMap = function () {
-            return new L.Google('ROADMAP', { maptiks_id: "day-map" });
+            var url = "http://{s}.api.internal.tomtom.com/lbs/map/3/basic/1/{z}/{x}/{y}.png?key=8r734zursdrdrvcejfhedk8q&l=en&v=3";
+            var options = {
+                attributionControl: false,
+                doubleClickZoom: false
+            };
+            return L.tileLayer(url, options);
+            // return new L.Google('ROADMAP', { maptiks_id: "day-map" });
         };
         DashboardMapController.prototype.blockPopup = function () {
             this.canOpenPopup = false;

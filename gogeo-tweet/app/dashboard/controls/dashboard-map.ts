@@ -230,7 +230,7 @@ module gogeo {
 
         private getNightMap() {
             var mapOptions = {
-                // How you would like to style the map. 
+                // How you would like to style the map.
                 // This is where you would paste any style found on Snazzy Maps.
                 styles: [
                   { "stylers": [ { "visibility": "simplified" } ] },
@@ -255,7 +255,14 @@ module gogeo {
         }
 
         private getDayMap() {
-            return new L.Google('ROADMAP', { maptiks_id: "day-map" });
+          let url = "http://{s}.api.internal.tomtom.com/lbs/map/3/basic/1/{z}/{x}/{y}.png?key=8r734zursdrdrvcejfhedk8q&l=en&v=3";
+          let options = {
+            attributionControl: false,
+            doubleClickZoom: false
+          };
+
+          return L.tileLayer(url, options);
+          // return new L.Google('ROADMAP', { maptiks_id: "day-map" });
         }
 
         private blockPopup() {
