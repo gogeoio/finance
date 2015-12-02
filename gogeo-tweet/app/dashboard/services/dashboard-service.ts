@@ -37,34 +37,6 @@ module gogeo {
     private _lastTypeEstab: string = null;
     private _loading: boolean = true;
 
-    private worldBound: IGeom = {
-      type: "Polygon",
-      coordinates: [
-        [
-        [
-          -201.09375,
-          -81.97243132048264
-        ],
-        [
-          -201.09375,
-          84.86578186731522
-        ],
-        [
-          201.09375,
-          84.86578186731522
-        ],
-        [
-          201.09375,
-          -81.97243132048264
-        ],
-        [
-          -201.09375,
-          -81.97243132048264
-        ]
-        ]
-      ]
-    };
-
     _geomSpaceObservable = new Rx.BehaviorSubject<IGeomSpace>(null);
     _hashtagFilterObservable = new Rx.BehaviorSubject<IBucket>(null);
     _somethingTermsObservable = new Rx.BehaviorSubject<string[]>([]);
