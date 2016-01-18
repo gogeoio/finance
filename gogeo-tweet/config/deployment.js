@@ -10,7 +10,7 @@ var gogeo;
         "api.url": "maps.demos.gogeo.io/1.0/",
         "tile.url": "{s}.demos.gogeo.io/1.0/",
         "subdomains": [ "m01", "m02", "m03", "m04" ],
-        "collection": "tweets_all"
+        "collection": "financial"
     };
 })(gogeo || (gogeo = {}));
 //# sourceMappingURL=deployment.js.map
